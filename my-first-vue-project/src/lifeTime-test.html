@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>生命周期钩子测试</title>
+	<script src="../../../vue.js"></script>
+</head>
+<body>
+	<section id="app">
+		{{ data }}
+	</section>
+	<script>
+		var myVue=new Vue({
+			el:'#app',
+			data:{
+				data:'aaaa',
+				info:'nono'
+			},
+			beforeCreate:function(){
+				console.log('创建前。。。。')
+				console.log(this.data);
+				console.log(this.$el);
+			},
+			created:function(){
+				console.log("已创建.....");
+				console.log(this.info);
+				console.log(this.$el);
+			},
+			beforeMount:function(){
+				console.log("mount之前.....");
+				console.log(this.info);
+				console.log(this.$el);
+			},
+			mounted:function(){
+				console.log("mount之前......");
+				console.log(this.info);
+				console.log(this.$el);
+			},
+			beforeUpdate:function(){
+				console.log('更新前......');
+			},
+			updated:function(){
+				console.log('更新完成.....')
+			},
+			beforeDestroy:function(){
+				console.log('销毁前.......');
+				console.log(this.info);
+				console.log(this.$el);
+			},
+			destroyed:function(){
+				console.log('已销毁......');
+				console.log(this.info);
+				console.log(this.$el);
+			}
+		})
+	</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 	<section id="page">
 		<ul class="posts-list">
 			<li v-for="item in topics" :key="item.id">
-				<router-link to="">
+				<router-link :to="{name :'topic',params:{id:item.id}}">
 					<h3 v-text="item.title"></h3>
 					<div class="content">
 						<img :src="item.author.avatar_url" alt="" class="avatar">
@@ -17,8 +17,8 @@
 								</span>
 							</p>
 							<p>
-								<time>{{ item.create_at | getLastTimeStr(true) }}</time>
-								<time>{{ item.last_reply_at | getLastTimeStr(true) }}</time>
+								<time>{{item.create_at | getLastTimeStr(true)}}</time>
+                                <time>{{item.last_reply_at | getLastTimeStr(true)}}</time>
 							</p>
 						</div>
 					</div>
@@ -37,9 +37,9 @@
 	import toTop from "../components/toTop.vue"
 
 	export default {
-	  filters : {
+	  filters: {
 	  	getLastTimeStr(time,isFromNow){
-	  	  return utils.getLastTimeStr(time,isFromNow)
+	  	  return utils.getLastTimeStr(time, isFromNow)
 	  	}
 	  },
 	  data() {
@@ -97,3 +97,6 @@
 	  }
 	}
 </script>
+<style>	
+		
+</style>

@@ -2,6 +2,7 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -19,10 +20,12 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.css'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      'vue$': 'vue/dist/vue',
+      'src' : path.resolve(__dirname,'../src'),
+      'assets' : path.resolve(__dirname,'../src/assets'),
+      'components' : path.resolve(__dirname,'../components')
     }
   },
   module: {
@@ -61,6 +64,24 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      // {
+      //     test: /\.scss$/,
+      //     include: [resolve('src'), resolve('test')],
+      //     exclude: [/node_modules\/(?!(ng2-.+|ngx-.+))/],
+      //     use: ExtractTextPlugin.extract({
+      //         use: ['css-loader', 'sass-loader'],
+      //         fallback: 'style-loader'
+      //     })
+      // },
+      {
+          test: /\.css$/,
+          include: [resolve('src'), resolve('test')],
+          exclude: [/node_modules\/(?!(ng2-.+|ngx-.+))/],
+          use: ExtractTextPlugin.extract({
+              use: ['css-loader'],
+              fallback: 'style-loader'
+          })
       }
     ]
   }

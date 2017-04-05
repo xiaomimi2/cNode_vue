@@ -1,0 +1,22 @@
+$color31:#313131;
+$colorf0:#f0f0f0;
+$colorfff:#fff;
+$colore7:#e7e7e7;
+$colorfa:#fafafa;
+$color62:#626262;
+$colord4:#d4d4d4;
+$colora0:#a0a0a0;
+$red:#ff5a5f;
+$yellow:#feb501;
+$color80:#80bd01;
+$gap:5px;
+
+body {
+	height: 100%;
+	width: 100%;
+	font-size : 14px;
+	color: $color31;
+	overflow-x: hidden;
+	line-height:1;
+	background: url('../../images/loading.gif') no-repeat center 250px;
+}

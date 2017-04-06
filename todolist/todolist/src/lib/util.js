@@ -29,7 +29,8 @@ const MillisecondToDate = (time) => {
 	var str = '';
 	if(time !== null && time !== ''){
 		let timeagoInstance = new Timeago();
-		str = timeagoInstance.format(time,'zh_CN')
+		str = timeagoInstance.format(time,'zh_CN');
+		return str;
 	}
 }
 
@@ -64,4 +65,5 @@ exports.getTabInfo = (tab, good, top, isClass) => {
 				break;
 		}
 	}
+	return isClass? className : str;
 }

@@ -74,15 +74,15 @@ module.exports = {
       //         fallback: 'style-loader'
       //     })
       // },
-      {
-          test: /\.css$/,
-          include: [resolve('src'), resolve('test')],
-          exclude: [/node_modules\/(?!(ng2-.+|ngx-.+))/],
-          use: ExtractTextPlugin.extract({
-              use: ['css-loader'],
-              fallback: 'style-loader'
-          })
-      }
+      // {
+      //     test: /\.css$/,
+      //     include: [resolve('src'), resolve('test')],
+      //     exclude: [/node_modules\/(?!(ng2-.+|ngx-.+))/],
+      //     use: ExtractTextPlugin.extract({
+      //         use: ['css-loader'],
+      //         fallback: 'style-loader'
+      //     })
+      // }
     ]
   }
 }

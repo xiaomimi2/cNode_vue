@@ -5,7 +5,7 @@ const userStore = new Vuex.Store({
   state: {
     userInfo: {}
   },
-  getter: {
+  getters: {
     getUserInfo (state) {
       return state.userInfo
     }

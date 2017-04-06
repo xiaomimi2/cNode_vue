@@ -1,11 +1,11 @@
 <template>
 <div>
-	<my-header></my-header>
+	<my-header :page-type='getTitleStr(searchKey.tab)' :need-add="true" :fix-head="true"></my-header>
 	<section id="page">
 		<ul class="posts-list">
 			<li v-for="item in topics" :key="item.id">
 				<router-link :to="{name :'topic',params:{id:item.id}}">
-					<h3 v-text="item.title"></h3>
+					<h3 v-text="item.title" :class="getTabInfo(item.tab,item.good,item.top,true)" :title="getTabInfo(item.tab,item.good,item.top,false)"></h3>
 					<div class="content">
 						<img :src="item.author.avatar_url" alt="" class="avatar">
 						<div class="info">
@@ -73,9 +73,6 @@
 	  	}
 	  },
 	  methods: {
-	  	// getTabInfo(tab,good,top,) {
-	  	// 	return utils.getTabInfo
-	  	// },
 	  	getTopics() {
 	  		let params = $.param(this.searchKey);
 	  		$.get('https://cnodejs.org/api/v1/topics?' + params, (d) => {
@@ -93,6 +90,30 @@
 	  			this.index[topic.id] = this.topics.length;//第一个是0
 	  			this.topics.push(topic);//第一个是第一个topic
 	  		}
+	  	},
+	  	getTitleStr(tab) {
+	  		let str = '';
+	  		switch (tab) {
+	  			case 'share':
+	  				str = '分享';
+	  				break;
+	  			case 'job':
+	  				str = '招聘';
+	  				break;
+	  			case 'ask':
+	  				str = '问答';
+	  				break;
+	  			case 'good':
+	  				str = '精华';
+	  				break;
+	  			default:
+	  				str = '全部';
+	  				break;
+	  		}
+	  		return str;
+	  	},
+	  	getTabInfo(tab,good,top,isClass) {
+	  		return utils.getTabInfo(tab,good,top,isClass);
 	  	}
 	  }
 	}

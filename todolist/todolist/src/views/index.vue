@@ -4,8 +4,11 @@
 	</div>
 </template>
 <script>
-  require('../assets/scss/CV.scss');
-
+  
+  require('../assets/scss/iconfont/iconfont.css');
+  require('../assets/scss/github-markdown.css');
+  require('../assets/scss/CV.scss'); 
+  
   export default {
     mounted () {
       setTimeout(() => {

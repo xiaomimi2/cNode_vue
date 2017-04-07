@@ -63,11 +63,14 @@
 							</div>
 						</section>
 						<div class="reply_content" v-html="item.content"></div>
+						<nv-reply v-if="userInfo.userId&&this.curReplyId" :topic.sync="topic" :topic-id="topicId" :reply-id="item.id" :reply-to="item.author.loginname" :show.sync="curReplyId" @close="hideItemReply">
+				
+						</nv-reply>
 					</li>
 				</ul>
 			</section>
 			<to-top></to-top>
-			<nv-reply v-if="userInfo.userId" :topic.sync="topic" :topic-id="topicId" :reply-id="item.id" :reply-to="item.author.loginname" :show.sync="curReplyId" @close="hideItemReply"></nv-reply>
+			<nv-reply v-if="userInfo.userId" :topic="topic" :topic-id="topicId"></nv-reply>
 		</div>
 		<div class="noData" v-if="noData">
 			<i class="iconfont icon-empty">&#xe60a;</i>该话题不存在
@@ -159,6 +162,9 @@
 						}
 					})
 				}
+			},
+			hideItemReply(){
+				this.curReplyId='';
 			}
 
 		},

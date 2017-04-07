@@ -36,7 +36,7 @@
 		right:10px;
 		bottom:80px;
 		font-size:50px;
-		z-index:10;
+		z-index:5;
 		color:#42b983;
 	}
 </style>

@@ -66,6 +66,8 @@
 					</li>
 				</ul>
 			</section>
+			<to-top></to-top>
+			<nv-reply v-if="userInfo.userId" :topic.sync="topic" :topic-id="topicId" :reply-id="item.id" :reply-to="item.author.loginname" :show.sync="curReplyId" @close="hideItemReply"></nv-reply>
 		</div>
 		<div class="noData" v-if="noData">
 			<i class="iconfont icon-empty">&#xe60a;</i>该话题不存在
@@ -74,10 +76,12 @@
 </template>
 
 <script>
-	import $ from 'webpack-zepto';
+	// import $ from 'webpack-zepto';
 	import utils from '../lib/util.js';
 	import myHeader from '../components/myHeader.vue';
 	import { mapGetters } from "vuex";
+	import toTop from '../components/toTop.vue';
+    import nvReply from '../components/reply.vue';
 
 	export default {
 		data() {
@@ -159,7 +163,9 @@
 
 		},
 		components: {
-			myHeader
+			myHeader,
+			toTop,
+			nvReply
 		},
 		filters:{
 			getLastTimeStr(time,friendly) {

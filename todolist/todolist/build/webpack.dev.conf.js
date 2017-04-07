@@ -7,6 +7,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+// var $ = require('webpack-zepto')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function(name) {
@@ -38,6 +39,9 @@ module.exports = merge(baseWebpackConfig, {
             template: 'index.html',
             inject: true
         }),
-        new FriendlyErrorsPlugin()
+        new FriendlyErrorsPlugin(),
+        new webpack.ProvidePlugin({
+            $:'webpack-zepto'
+        })
     ]
 })

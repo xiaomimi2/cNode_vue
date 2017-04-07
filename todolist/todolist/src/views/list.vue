@@ -1,6 +1,6 @@
 <template>
 <div>
-	<my-header :page-type='getTitleStr(searchKey.tab)' :need-add="true" :fix-head="true"></my-header>
+	<my-header ref="head" :page-type='getTitleStr(searchKey.tab)' :need-add="true" :fix-head="true"></my-header>
 	<section id="page">
 		<ul class="posts-list">
 			<li v-for="item in topics" :key="item.id">
@@ -31,7 +31,7 @@
 	
 </template>
 <script>
-	import $ from "webpack-zepto"
+	// import $ from "webpack-zepto"
 	import utils from "../lib/util.js"
 	import myHeader from "../components/myHeader.vue"
 	import toTop from "../components/toTop.vue"
@@ -70,8 +70,14 @@
 	  		this.$nextTick(() => {$(window).scrollTop(window.sessionStorage.scrollTop)})
 	  	} else {
 	  		this.getTopics();
-	  	}
+	  	};
+
 	  },
+	  // beforeRouteLeave(to,from,next) {
+	  // 	if(to.name === 'topic'){
+
+	  // 	}
+	  // },
 	  methods: {
 	  	getTopics() {
 	  		let params = $.param(this.searchKey);
@@ -114,6 +120,19 @@
 	  	},
 	  	getTabInfo(tab,good,top,isClass) {
 	  		return utils.getTabInfo(tab,good,top,isClass);
+	  	}
+	  },
+	  watch: {
+	  	//切换页面
+	  	'$route' (to, from) {
+	  		if(to.query && to.query.tab){
+	  			this.searchKey.tab = to.query.tab;
+	  			this.topics = [];
+	  			this.index = {};
+	  		}
+	  		this.searchKey.page = 1;
+	  		this.getTopics();
+	  		this.$refs.head.show = false;
 	  	}
 	  }
 	}

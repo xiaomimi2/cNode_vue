@@ -10,7 +10,7 @@ const userStore = new Vuex.Store({
       return state.userInfo
     }
   },
-  mutation: {
+  mutations: {
     setUserInfo (state, userInfo) {
       state.userInfo = userInfo
     }
@@ -23,3 +23,10 @@ const userStore = new Vuex.Store({
 })
 
 export default userStore
+
+// userInfo:{
+//   loginname: res.loginname,
+//   avatar_url:res.avatar_url,
+//   userId: res.id,
+//   token: this.token
+// }

@@ -1,6 +1,6 @@
 <template>
 	<section id="sideBar" class="nav-list" :class="{'show':showMenu}">
-		<!-- <userInfo></userInfo> -->
+		<user-info></user-info>
 		<section class="list-ul">
 			<router-link  class="item iconfont icon-quanbu" :to="{name:'list',query:{tab:'all'}}">全部</router-link>
 			<router-link class="item iconfont icon-hao" :to="{name:'list',query:{tab:'good'}}">精华</router-link>
@@ -13,11 +13,12 @@
 	</section>
 </template>
 <script>
+	import userInfo from "./user-info.vue";
 	export default {
 		replace: true,
 		props:['showMenu','pageType','nickName','profileUrl'],
 		components: {
-			'userInfo': require('./user-info.vue')
+			userInfo
 		}
 	}
 </script>

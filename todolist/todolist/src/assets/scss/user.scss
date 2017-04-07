@@ -1,0 +1,60 @@
+.user-info {
+	padding:15px;
+	font-size:15px;
+	color:#313131;
+}
+
+.login-no{
+	margin:8px 9px;
+	&>.login {
+		height:24px;
+		line-height:24px;
+		padding-left:34px;
+		position:relative;
+		&:before{
+			width:24px;
+			height:24px;
+			content:'';
+			position:absolute;
+			left:0;
+			right:0;
+			background:url('../images/components/login_icon.png') no-repeat left center;
+			background-size:24px 24px;
+		}
+	}
+	
+}
+
+.login-yes{
+	height:100%;
+	overflow:hidden;
+	position:relative;
+	.avatar {
+		width:40px;
+		height:40px;
+		background:url('../images/components/user.png') no-repeat center center;
+		background-size:40px 40px;
+		border-radius:20px;
+		overflow:hidden;
+		float:left;
+		&>img{
+			width:40px;
+			height:40px;
+			display:block;
+		}
+	}
+	.info{
+		margin-left:10px;
+		float:left;
+		p{
+			line-height:40px;
+			width:110px;
+			padding-right:8px;
+			@extend .text-overflow;
+			background:url('../images/components/go_icon.png') no-repeat right center ;
+			background-size:7px 7px;
+		}
+
+	}
+	
+}

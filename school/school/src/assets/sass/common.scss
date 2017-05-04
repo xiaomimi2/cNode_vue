@@ -1,0 +1,92 @@
+$width: 1200px;
+$linkColorWhite: #2389cb #fff !default;
+$linkColorBlack: #2389cb #333 !default;
+$firstfont: #333;
+$secondfont: #666;
+$thirdfont: #999;
+$gapMargin:5px;
+$courseWidth:236px;
+$courseHeight:194px;
+$bgc:#fff;
+
+body{
+    font-family:'Microsoft yahei';
+}
+@mixin box-shadow ($shadow...) {
+    box-shadow:$shadow
+}
+
+.clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+.wrap {
+    width:$width;
+    margin:auto;
+    .content{
+       width:$width+$gapMargin;
+       margin-left:-$gapMargin;
+       .coursevideo{
+           height:418px;
+           // background-color: #333;
+           margin-top:-20px;
+           width:218px;
+           margin-right:23px;
+           float:left;
+       }
+       .lessons{
+           width:1000px;
+           float:left;
+           .course{
+               // background-color: #333;
+               margin-bottom:9px;
+           }
+       }
+       .course{
+            width:$courseWidth;
+            height:$courseHeight;
+            padding:10px 9px;
+            box-sizing:border-box;
+            margin-left:$gapMargin;
+            background-color:$bgc;
+            float:left;
+            &:hover{
+                box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+            }
+            .header{
+                height:124px;
+                width:100%;
+                overflow: hidden;
+                position: relative;
+                font-size:12px;
+                margin-bottom:5px;
+                img{
+                    max-width:none;
+                    position: absolute;
+                    left:50%;
+                    top:50%;
+                    transform:translate(-50%,-50%)
+                }
+            }
+            .body{
+                p{
+                    line-height: 22px;
+                    font-size:12px;
+                }
+                .subject{
+                    color:#188eee;
+                }
+                .teacher{
+                    float:right;
+                    color:$thirdfont;
+                }
+            }
+       }
+    }
+}

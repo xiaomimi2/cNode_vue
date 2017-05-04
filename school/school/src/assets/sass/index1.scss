@@ -1,0 +1,300 @@
+html { overflow: hidden; }
+.container{
+	position: relative;
+	height: 100%;
+	width: 100%;
+	width: 100vw;
+	min-width: 1200px;
+	height: 100vh;
+	min-height: 768px;
+}
+#container-pic{
+	height: 100%;
+	width:100%;
+	position: relative;
+}
+
+.container .pic-title{
+	 position: absolute;
+	 top:20px;
+	 height: 110px;
+	 width: 100%;
+	 font-size: 50px;
+	 letter-spacing:18px;
+	 color: #fff;
+	 text-align: center;
+	 line-height: 110px;
+	 text-shadow:5px 2px 6px #000;
+	 background:url("../image/downloadbg_title.png") center center no-repeat;
+}
+
+.login-Pop{
+	width: 360px;
+	height: 250px;
+	position: absolute;
+	/*top:160px;*/
+	top:20%;
+	left: 50%;
+	margin-left: -160px;
+	webkit-box-shadow: 1px 1px 4px #fff;
+    -moz-box-shadow: 1px 1px 4px #fff;
+    box-shadow: 1px 1px 4px #fff;
+	
+}
+.login-Pop .loginPop{
+	width: 320px;
+	height: 210px;
+	padding:20px;
+	
+	webkit-box-shadow: -1px -1px 4px #fff;
+    -moz-box-shadow: -1px -1px 4px #fff;
+    box-shadow: -1px -1px 4px #fff
+}
+
+.loginPop p{
+	height: 34px;
+	line-height: 34px;
+	color: #fff;
+	font-size: 20px;
+	margin: 20px auto;
+}
+.loginPop span{
+	font-size: 14px;
+	color: red;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	text-align: center;
+	margin: 26px auto;
+}
+.loginPop p select{
+	height: 34px;
+	width: 200px;
+	font-size: 16px;
+	line-height: 34px;
+}
+
+.loginPop .p-btn{
+	width: 160px;
+	margin:0px auto;
+	margin-top: 70px;
+
+
+}
+
+.loginPop .p-btn a{
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	border: 1px solid #fff;
+	border-radius: 8px;
+	letter-spacing:2px;
+}
+.loginPop .p-btn a:hover{
+	background-color: #777777;
+	border: 1px solid #777777;
+}
+
+.loginPop .pcdown{
+	border-radius: 8px;
+	letter-spacing:2px;
+	width: 160px;
+	height: 40px;
+	line-height: 40px;
+	background-color: #0291DF;
+	text-align: center;
+	cursor: pointer;
+	margin-top: -10px;
+	color: #fff;
+
+}
+
+
+
+
+
+
+
+
+#biaoBg{
+	width: 100%;
+	height: 100%;
+}
+#biaoti{
+	position: absolute;
+	right: 150px;
+	top:24px;
+	width: 600px;
+	height: 50px;
+}
+
+.container .left{
+	left: 80px;
+	bottom:100px;
+}
+.container .left .left-con{
+  width: 574px;
+  height: 200px;
+}
+.container .left div .left-title{
+	width: 576px;
+	 height: 61px;
+	 
+}
+.container .left div .left-title img{
+	width: 100%;
+	height: 100%;
+}
+.container .left .left-con p{
+	color: #fff;
+	font-size: 18px;
+	line-height: 38px;
+}
+.container .left .left-con .p-where{
+	padding-top: 30px;
+}
+#left-pic{
+	width: 500px;
+	height: 50px;
+}
+
+ #text{
+	position: absolute;
+	bottom: 80px;
+	right: 138px;
+	line-height: 34px;
+	width: 400px;
+	height: 200px;
+	color: #fff;
+	font-size: 18px;
+	border-top:1px solid #ccc;
+	border-top:1px solid rgba(255,255,255,0.2);
+
+}
+
+
+/*弹出框*/
+
+#zhezhao{
+	display: none;
+	position: absolute;
+	left: 0;
+	top:0;
+    background-color: #000;
+    z-index: 1000;
+	width: 100%;
+	height: 100%;
+	filter:alpha(opacity=50); /*IE滤镜，透明度50%*/
+ -moz-opacity:0.5; /*Firefox私有，透明度50%*/
+opacity:0.5;/*其他，透明度50%*/
+
+}
+
+.pop-box{
+	position: absolute;
+	padding: 0 76px;
+	width: 448px;
+	height: 400px;
+	background: rgba(255,255,255,0.6);
+	left: 50%;
+	top:50%;
+	margin-top: -200px;
+	margin-left: -224px;
+	z-index: 3000;
+	border-radius: 12px;
+}
+.pop-box .cancle{
+	display: block;
+	width: 30px;
+	height: 30px;
+   right: 10px;
+   top:10px;
+   // background: url("../image/btn_close_a.png") no-repeat center center;
+   background-size: 100% 100%;
+   cursor: pointer;
+
+}
+.pop-box .cancle-active{
+	// background: url("../image/btn_close_a.png") no-repeat center center;
+	background-size: 100% 100%;
+}
+.pop-box .pop-bg{
+	height: 90px;
+	margin:80px auto 40px; 
+	// background: url("../image/pic_ys-net.png") no-repeat center center;
+	background-size: 100% 100%;
+
+}
+ .pop-box strong{
+	font-size: 16px;
+	line-height: 30px;
+	font-weight: 550;
+}
+.pop-box .pop-btn{margin-top: 25px;}
+ .pop-box .pop-btn  a{
+	display: inline-block;
+	width: 170px;
+	height: 50px;
+}
+ .pop-box .pop-btn .pop-pcBtn {
+ // background: url("../image/btn_pc_l.png") no-repeat center center;
+ background-size: 100% 100%;
+}
+ .pop-box .pop-btn .pop-phoneBtn {
+ // background: url("../image/btn_net_l.png") no-repeat center center;
+ background-size: 100% 100%;
+}
+/*大于890*/
+@media screen and (min-height: 890px) { 
+
+	#text{
+		/*color: red;*/
+	}
+	
+
+}
+/*da于1800*/
+@media screen and (min-width:1700px) { 
+
+
+
+#biaoti{
+	right: 210px;
+}
+
+.container .left{
+	left: 120px;
+}
+ 
+.container .right{
+	right: 190px;
+}
+#text{
+	right: 198px;
+}
+
+
+}
+@media screen and (max-width:1700px) { 
+
+
+
+#biaoti{
+	right:150px;
+}
+
+.container .left{
+	left: 80px;
+}
+ 
+.container .right{
+	right: 140px;
+}
+#text{
+	right: 138px;
+}
+
+
+}

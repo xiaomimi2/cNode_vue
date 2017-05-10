@@ -9,15 +9,12 @@
          <div class="loginPop">
             <p>
                 <label for="username">用户：</label>
-                <select id="videouser">
-                  <option value ="张老师" @click="userLogin">张老师</option>
-                  <option value ="王老师" @click="userLogin">王老师</option>
-                  <option value="教研室" @click="userLogin">教研室</option>
-                   <option value="课堂" @click="userLogin">课堂接入</option>
+                <select id="videouser" v-model="finialUser">
+                  <option v-for="user in userList"  :value="user.realname" v-text="user.realname"></option>
                 </select>
             </p>
             <p class="p-btn">
-                <a  id="enter">进入测试会议室</a>
+                <a id="enter" @click="userLogin()">进入测试会议室</a>
             </p>
          </div>
             
@@ -40,4 +37,25 @@
 <script>
     require('../assets/sass/reset.css')
     require('../assets/sass/index1.scss')
+    import util from '../libs/util.js'
+    export default {
+        data () {
+            return {
+                userList: [
+                            {videouser: 'jyt004', videopwd: 'jyt004', roomid: '67', realname: '王老师', img: 'image/user1.jpg'},
+                            {videouser: 'jyt002', videopwd: 'jyt002', roomid: '67', realname: '教研室', img: 'image/user2.jpg'},
+                            {videouser: 'jyt003', videopwd: 'jyt003', roomid: '67', realname: '张老师', img: 'image/user3.jpg'},
+                            {videouser: 'jyt001', videopwd: 'jyt001', roomid: '67', realname: '课堂', img: 'image/user4.jpg'}
+                ],
+                finialUser: null
+            }
+        },
+        methods: {
+            userLogin () {
+                var index = util.getIndexOfArray('realname', this.finialUser, this.userList)
+                util.store.saveToLocal('user', this.userList[index])
+                // this.$router.push({name: 'Home'})
+            }
+        }
+    }
 </script>

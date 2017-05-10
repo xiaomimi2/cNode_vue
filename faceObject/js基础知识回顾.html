@@ -1,0 +1,320 @@
+面向对象知识回顾
+
+1、对象的封装，聚合，继承，多态（不同对象相同方法，实现各自的执行能力，对继承的方法进行重写）
+
+记录一下在控制台中直接执行会算出的是十进制的结果
+<script>
+    var n = 0377
+    console.log(n) //255  
+</script>
+
+\r  回车符
+\n  换行符
+\t  制表符
+\u  后面的字符将被视为Unicode码
+
+javascript内建函数
+parseInt()  parseInt('abc123') NaN
+parseFloat()
+isNaN()  ES6
+isFinite() ES6
+encodeURI()
+decodeURI()
+encodeURIComponent()
+decodeURIComponent()
+eval()
+
+
+匿名函数的应用
+1、回调函数 针对可能需要同时用到相同的再一次循环的情况可以直接在这里使用。
+2. 自调函数（life函数）
+好处是不会产生任何的全局变量。缺点是只执行一次。
+3.内部私有函数
+4.返回函数的函数
+5.能重写自己的函数  应用场景，见设计模式惰性模式
+<script>
+    function a () {
+        alert("A")
+        a = function () {
+            alert('B')
+        }
+    }
+</script>
+
+词法作用域的问题
+<script>
+    function f1() {
+        var a = 1
+        f2()
+    }
+
+    function f2 () {
+        return a
+    }
+    f1() //undefined
+</script>
+当函数被定义时，它会记录本身所在的环境和相关的作用域链
+6.闭包
+必须要注意闭包这个问题
+<script>
+    function f () {
+        var a = []
+        var i
+        for (i = 0; i < 3; i++) {
+            a[i] = (function (x) {
+                return x
+            })(i)
+        }
+        return a
+    }
+
+    function f () {
+        var a = []
+        var i 
+        for (i = 0; i < 3; i++) {
+            a[i] = (function (x) {
+                return function () {
+                    return x
+                }
+            })(i)
+        }
+        return a
+    }
+</script>
+
+
+关系型数组成为哈希表
+一般性数组称为索引型数组或者枚举型数组
+
+常见对象的方式
+一。直接用obj = {name :'xx'} 定义方式
+二。构造函数创建对象
+用构造函数创建的对象会有一个特殊的属性constructor,这个在原型的属性上。用instanceof 方法可以得知某一个对象是不是某个指定的构造函数创建的
+<script>
+    var Person = function (name) {
+        this.name = name
+    }
+    var p = new Person()
+    console.log(p)
+    console.log(p.constructor)
+    console.log(p instanceof Person)
+</script>
+三。封装返回对象的函数
+
+
+
+函数对象
+1、函数本身对象有一个constructor属性
+2、函数本身有一个length属性
+3、caller属性  这个属性很有用，可以返回调用它的函数
+<script>
+    function A() {
+        return A.caller
+    }
+    function B() {
+        return A()
+    }
+    B()
+</script>
+4、prototype属性 对象。只有在函数是构造器的时候才会有作用
+
+
+Date对象
+Date() 
+1.没有参数 默认当天的日期
+2.一个用于表现日期的字符串
+3.分别传递日月时间等值,用逗号隔开
+4.一个timestamp值
+Date对象会自动溢出式前进处理。例如2.30号会被解释为3.1号
+
+如果使用Date没有使用new操作符。那么无论传递了什么参数，字符串的内容始终都是当前的日期和时间。
+
+
+Date的静态方法
+Date.parse()  转换为timestamp
+有意思的示例Date的getDay()方法,算出有多少个周末
+<script>
+    var stats = [0,0,0,0,0,0,0]
+    for (var i = 2017; i < 3012; i++) {
+        stats[new Date(i, 5 , 20).getDay()]++
+    }
+</script>
+
+
+RegExp对象的属性
+global
+ignoreCase
+multiline
+lastIndex
+source
+
+RegExp方法 参数都是字符串
+test() 返回布尔值
+exec() 由匹配字符串组成的数组
+<script>
+    /j.*t/.test('javascript') //false  区分大小写了
+   var arr = /j.*t/i.test('javascript') //true arr[0] = javascript
+</script>
+
+以正则表达式为参数的字符串方法
+match() 返回一个包含匹配内容的数组
+search() 返回的第一个匹配内容所在的位置
+replace()  将匹配的文本替换成指定的字符串
+split() 根据指定的正则将目标字符串分割成若干个数组元素
+可以用$&修饰符表示匹配的文本
+如果正则表达式中用了括号，分组了。用$1表示匹配的第一组
+<script>
+    var s = 'HelloJavascriptWorld'
+    s.match(/a/) //[a]
+    s.match(/a/g) // ['a', 'a']
+    s.match(/j.*t/i) //['Javascript']
+    s.search(/j.*a/i) //5
+    s.replace(/[A-Z]/g, '') //"elloavascriptorld"
+    s.replace(/[A-Z]/g, '_$&')//"_Hello_Javascript_World"
+    var email= 'stoyan@phoied.com'
+    var username = email.replace(/(.*)@.*/,'$1')
+    console.log(username)//stoyan
+    var csv = 'one, two,three ,four'
+    csv.split(/\s*,\s*/) //这样可以去除空格
+</script>
+回调式替换
+<script>
+    //这个回调可以接受的参数
+    //首参数是正则表达式匹配的内容
+    //尾参数是被搜素的字符串
+    //尾参数之前的参数表示的是匹配内容所在的位置
+    //regex模式分组的所有匹配字符串组相当于所有（）匹配的$1,$2等等
+    function replaceCallback (match) {
+        return "_" + match.toLowerCase()
+    }
+     var s = 'HelloJavascriptWorld'
+     s.replace(/[A-Z]/g,replaceCallback)
+</script>
+
+#原型方面的知识整理
+hasOwnProperty()
+isPrototypeOf() 当前对象是否是另一个对象的原型
+__proto__属性 某个实体对象的属性。prototype属于构造函数的属性。__proto__指向原型对象。
+实例对象的constructor属性指向构造函数
+
+原型扩展最佳实践：考虑到将来的可能部分功能会有。所以一定要有检测
+<script>
+    if (!String.prototype.reverse) {
+        String.prototype.reverse = function () {
+            return Array.prototype.reverse.apply(this.split('')).join('')
+        }
+    }
+</script>
+
+原型链
+浅拷贝，深拷贝
+<script>
+    function deepCopy(p, c) {
+        var c = c || {}
+        for (var i in p) {
+            if (typeof p[i] === 'object') {
+                c[i] = (p[i].construtor === Array) ? [] : {}
+                deepCopy(p[i], c[i])
+            } else {
+                c[i] = p[i]
+            } 
+        }
+        return c
+    }
+</script>
+
+类似于object.create()方法的构建函数
+<script>
+    function object (o) {
+        function F () {}
+        F.prototype = o
+        return new F()
+    }
+</script>
+<script>
+    function object (o) {
+        var n
+        function F() {}
+        F.prototype = o
+        n = new F()
+        n.uber = o
+        return n
+    }
+</script>
+
+寄生式继承，定义就是在创建对象的函数中直接吸收其他对象的功能。然后对其进行扩展并返回。
+
+1.返回一个对象.即使使用了new 操作符。最后还是返回的这个对象
+<script>
+    function triangle (s, h) {
+        var that = object(twoD)
+        that.name = 'Triangle'
+        that.getArea = function () { return this.size * this.height / 2}
+        that.side = s
+        that.height = h
+        return that
+    }
+</script>
+
+2.构造器借用
+使用apply的方式
+<script>
+    function shape (id) {
+        this.id = id
+    }
+    function Triangle () {
+        Shape.apply(this, arguments)
+    }
+    Triangle.prototype.name = 'Triangle'
+
+</script>
+
+
+
+
+BOM对象
+window.navigator
+window.location
+window.history
+window.frames 所有frames元素的合集
+在没有frames的浏览器下 window.frames === window//true
+window.navigator.userAgent 识别浏览器 最好使用特性检测法（鸭子类型？）
+<script>
+    if (navigator.userAgent.indexOf('MSIE') !== -1) {
+
+    }
+</script>
+
+window.frames[0].window === window.frames[0]
+子元素访问父元素  frames[0].parent
+访问最顶层页面  window.frames[0].window.top
+self属性基本和window相同  frames[0].self = frames[0].window
+如果frame元素有名字属性。我们可以直接通过名字访问 window.frames['myframe'] === window.frames[0]
+
+window.open()/window.close()
+window.moveTo()/window.resizeTo()
+window.alert()
+window.prompt()
+window.confirm()
+window.setTimeout()
+window.setInterval()
+window.document
+
+
+document.nodeType  文档类节点9
+文本类节点nodeType 3
+元素类节点 1
+
+document.nodeValue //null
+document.nodeName //'#document'
+document.documentElement.nodeType //1
+document.documentElement.nodeName // 'HTML'
+document.documentElement.tagName //'HTML'
+
+textContent属性来获取段落中的文本内容 IE下不支持
+innerText 属性
+
+
+简单工厂模式 不用prototype
+工厂方法模式 只用prototype
+抽象工厂方式  利用了prototype属性和函数的属性。中间使用了构造函数新建了对象原型

@@ -53,9 +53,15 @@
         methods: {
             userLogin () {
                 var index = util.getIndexOfArray('realname', this.finialUser, this.userList)
-                util.store.saveToLocal('user', this.userList[index])
+                util.storageToLocal.saveToLocal('user', this.userList[index])
                 // this.$router.push({name: 'Home'})
             }
         }
     }
 </script>
+
+
+<template>
+   
+   
+</template>

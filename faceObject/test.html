@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试模态框</title>
+    <style>
+        .modalview{
+            position:fixed;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            background-color: rgba(0,0,0,.6);
+            z-index:20;
+        }
+        .view {
+            width:500px;
+            height:500px;
+            background-color: yellow;
+            display:none;
+            z-index:21;
+            position:absolute;
+        }
+    </style>
+    <script src="modal.js"></script>
+</head>
+<body>
+    <h1>这是测试页面</h1>
+    <div class="view">这是需要弹出显示的内容区域</div>
+    <script>
+        var view = document.querySelector('.view')
+        var myModal = new Modal(view)
+        myModal.init()
+    </script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>波纹</title>
+    <style>
+         html,body{
+          background-color: #ed5565;
+          height:100%;
+          padding:100px;
+          margin:0;
+      } 
+        .ball-ripple-multiple{
+            position:relative;
+            -webkit-transfrom:translateY(-25px);
+        }
+        .ball-ripple-multiple>div{
+            -webkit-animation-fill-mode:both;
+            position: absolute;
+            top:-2px;
+            left:-26px;
+            width:50px;
+            height:50px;
+            border-radius:100%;
+           /* border:2px solid #fff;*/
+           background-color: #fff;
+            -webkit-animation:ball-scale-ripple-multiple 1s 0s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+        }
+        .ball-ripple-multiple>div:nth-child(1){
+            -webkit-animation-delay:-0.6s;
+        }
+        .ball-ripple-multiple>div:nth-child(2){
+            -webkit-animation-delay:-0.3s;
+        }
+        .ball-ripple-multiple>div:nth-child(3){
+            -webkit-animation-delay:0s;
+        }
+       /* .ball-ripple-multiple>div:nth-child(4){
+            -webkit-animation-delay:0.9s;
+        }*/
+        @-webkit-keyframes ball-scale-ripple-multiple{
+            0%{
+                -webkit-transform:scale(0.1);
+                opacity:1;
+            }
+          /*  50%{
+                -webkit-transform:scale(0.3);
+                opacity:0.5;
+            }*/
+            100%{
+                opacity:0;
+                -webkit-transform:scale(1.2)
+            }
+
+        }
+        .ball-spin-fade-loader{
+            position: relative;
+            margin-left:100px;
+        }
+        .ball-spin-fade-loader>div{
+            color:#fff;
+            width:20px;
+            height:20px;
+            background-color: #fff;
+            border-radius:100%;
+            position:absolute;
+            -webkit-animation:ball-spin-fade-loader 1s cubic-bezier(0, 0, 0.8, 0.46) infinite;
+        }
+        .ball-spin-fade-loader>div:nth-child(1){
+            top:-25px;
+            left:0;
+            -webkit-animation-delay:-0.98s;
+        }
+         .ball-spin-fade-loader>div:nth-child(2){
+            left:17.67px;
+            top:-17.67px;
+            -webkit-animation-delay:-0.84s;
+        }
+        .ball-spin-fade-loader>div:nth-child(3){
+            top:0px;
+            left:25px;
+            -webkit-animation-delay:-0.72s;
+        }
+        .ball-spin-fade-loader>div:nth-child(4){
+            top:17.67px;
+            left:17.67px;
+            -webkit-animation-delay:-0.60s;
+        }
+        .ball-spin-fade-loader>div:nth-child(5){
+            top:25px;
+            left:0;
+            -webkit-animation-delay:-0.48s;
+        }
+        .ball-spin-fade-loader>div:nth-child(6){
+            top:17.67px;
+            left:-17.67px;
+            -webkit-animation-delay:-0.36s;
+        }
+        .ball-spin-fade-loader>div:nth-child(7){
+            top:0px;
+            left:-25px;
+            -webkit-animation-delay:-0.24s;
+        }
+        .ball-spin-fade-loader>div:nth-child(8){
+            top:-17.67px;
+            left:-17.67px;
+            -webkit-animation-delay:-0.12s;
+        }
+        @-webkit-keyframes ball-spin-fade-loader{
+            0%{
+                opacity: 0;
+                -webkit-transform:scale(0.1);
+            }
+            100%{
+                opacity:0.8;
+                -webkit-transform:scale(0.9);
+            }
+
+        }
+        .line-scale-pulse-out{
+            position:relative;
+            margin-left:200px;
+        }
+        .line-scale-pulse-out>div{
+            width:4px;
+            height:35px;
+           /* margin:0px 2px;*/
+            display:inline-block;
+            background-color: #fff;
+            -webkit-animation:line-scale-pulse-out 1s 0s infinite linear;
+        }
+        .line-scale-pulse-out>div:nth-child(1){
+            -webkit-animation-delay:-0.4s;
+        }
+        .line-scale-pulse-out>div:nth-child(2){
+            -webkit-animation-delay:-0.2s;
+        }
+        .line-scale-pulse-out>div:nth-child(3){
+            -webkit-animation-delay:0s;
+        }
+        .line-scale-pulse-out>div:nth-child(4){
+            -webkit-animation-delay:-0.2s;
+        }
+        .line-scale-pulse-out>div:nth-child(5){
+            -webkit-animation-delay:-0.4s;
+        }
+
+        @-webkit-keyframes line-scale-pulse-out{
+            0%{
+                -webkit-transform:scaleY(0.33);
+            }
+            50%{
+               -webkit-transform:scaleY(1);
+            }
+            100%{
+               -webkit-transform:scaleY(0.33);
+            }
+        }
+        .eat{
+            margin-left:200px;
+            position:relative;
+            
+        }
+        .eat>div{
+            position:absolute;
+            width:15px;
+            height:15px;
+            border-radius:50%;
+           
+        }
+        .eat .eatfather{
+            border:50px solid #fff;
+            width:0px;
+            height:0px;
+            border-radius:50%;
+            border-right-color:rgba(255,255,255,0);
+        }
+        .eat>div:nth-child(1){
+            -webkit-animation:eatfather-up 0.5s 0s  infinite;
+        }
+         .eat>div:nth-child(2){
+            -webkit-animation:eatfather-down 0.5s 0s  infinite;
+        }
+        .eat>div:nth-child(3){
+            left:120px;
+            background-color: #fff;
+            top:40px;
+            -webkit-animation:eatloading 0.5s -0.1s linear infinite;
+        }
+        .eat>div:nth-child(4){
+            left:160px;
+             background-color: #fff;
+             top:40px;
+             -webkit-animation:eatloading 0.5s -0.1s linear infinite;
+        }
+         .eat>div:nth-child(5){
+            left:200px;
+             background-color: #fff;
+             top:40px;
+             -webkit-animation:eatloading 0.5s -0.1s linear infinite;
+        }
+        @-webkit-keyframes eatfather-up{
+            0%{
+                -webkit-transform:rotate(0deg);
+            }
+            90%{
+                -webkit-transform:rotate(-45deg);
+            }
+        }
+        @-webkit-keyframes eatfather-down{
+            0%{
+                -webkit-transform:rotate(0deg);
+            }
+            90%{
+                -webkit-transform:rotate(45deg);
+            }
+        }
+        @-webkit-keyframes eatloading{
+            0%{
+                -webkit-transform:translateX(0px);
+            }
+            100%{
+                 -webkit-transform:translateX(-70px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ball-ripple-multiple">
+        <div></div>
+        <div></div>
+        <div></div>
+      <!--   <div></div> -->
+    </div>
+    <div class="ball-spin-fade-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="line-scale-pulse-out">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="eat">
+        <div class="eatfather"></div>
+        <div class="eatfather"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+        <div class="ball"></div>
+    </div>
+</body>
+</html>

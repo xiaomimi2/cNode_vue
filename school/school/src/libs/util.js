@@ -41,7 +41,7 @@ const getIndexOfArray = (key, value, array) => {
     return _.findIndex(array, key, value)
 }
 
-exports.store = storageToLocal
+exports.storageToLocal = storageToLocal
 exports.MillisecondToDate = MillisecondToDate
 exports.getIndexOfArray = getIndexOfArray
 exports.throttle = (fn, wait, mustRun) => {

@@ -1,0 +1,55 @@
+Vue指令
+bind  只调用一次。指定第一次绑定到元素时调用。绑定一次的初始化动作
+inserted 被绑定元素插入父节点时调用。父节点存在即可，不需要绑定在document中
+update 被挡定元素所在的模板更新时调用。而不论绑定值是否变化。通过比较更新后的绑定值可以忽略不必要的模板更新。
+componentUpdated 被被绑定元素所在模板完成一次更新周期时调用
+unbind 只调用一次。指令与元素解绑时
+
+vue指令和插件一样，是一个带有install方法的模块
+
+
+当对象的某个属性变化的时候，如何触发自定义的回调函数
+Object.defineProperty 这个方法可以自定义getter setter函数。从而在获取对象属性和设置对象属性的时候能够执行自定义的回调函数。
+
+
+深层次对象函数。
+//这里没有处理数组的变化
+//当新设置的set是对象的话。那么新的set对象里的属性不能调用getter,setter
+<script>
+    function Observer (data) {
+        this.data = data
+        this.walk(data)
+    }
+    let p = Observer.prototype
+    p.walk = function (obj) {
+        let val
+        for (let key in obj) {
+            if(obj.hasOwnProperty(key)) {
+                val = obj[key]
+                if(typeof val === 'object') {
+                    new Observer(val)
+                }
+                this.convert(key, val, obj)
+            }
+        }
+    }
+    p.convert = function (key, val, obj) {
+        //这里之定义了一层data
+        Object.defineProperty(obj, key, {
+            enumerable: true,
+            configurable: true,
+            get: function () {
+                console.log('你访问了' + key)
+                return val
+            },
+            set: function (newval) {
+                console.log('你设置了' + key)
+                console.log(newval)
+                if(newval === val) return
+                val = newval
+            }
+        })
+    }
+    var data = {user:{name:'xx'}}
+    let app = new Observer(data)
+</script>

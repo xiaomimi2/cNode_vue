@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container{
+            width:800px;
+            height:400px;
+            background-color: black;
+            position: relative;
+        }
+        #slider{
+            width:200px;
+            height:100px;
+            background-color: green;
+            position:absolute;
+            left:0;
+            right:0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="slider"></div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script>
+      
+        var container = document.getElementById('container')
+        var slider = document.getElementById('slider')
+        var addListener = function (type, handler, elem) {
+            if(window.addEventListener) {
+                return elem.addEventListener(type, handler, false)
+            } else if (window.attachEvent){
+                return elem.attachEvent('on' + type, handler)
+            } else {
+                return elem['on' + type] = handler
+            }
+        }
+        var getEvent = function (ev) {
+            return ev || window.event
+        }
+       
+        $(slider).on('mousedown', function (ev) {
+            var x, y,nowX,nowY,longTap
+            x = ev.clientX
+            y = ev.clientY
+            console.log(x, y)
+            $(slider).on('mousemove', function(ev){
+                if(ev.button === 0) {
+                    nowX = ev.clientX
+                    nowY = ev.clientY 
+                    if(x && y){
+                        var distanceX = nowX - x
+                        var distanceY = nowY - y
+                        x = event.clientX
+                        y = event.clientY
+                        console.log(distanceX,distanceY)
+                        if(this.offsetLeft + distanceX >= 0 && this.offsetLeft + distanceX + 200 <= 800 ) {
+                            this.style.left = this.offsetLeft + distanceX + 'px'
+                        } 
+                        if(this.offsetTop + distanceY >= 0 && this.offsetTop + distanceY + 100 <= 400 ) {
+                            this.style.top = this.offsetTop + distanceY + 'px'
+                           
+                        }
+                    }
+                }
+               
+            })
+            $(container).on('mouseup', function (ev) {
+                $(slider).off('mousemove')
+                console.log('off')
+            })
+        })
+
+    </script>
+</body>
+</html>

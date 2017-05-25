@@ -209,20 +209,20 @@ vbind.multi = function (newObj, oldObj) {
 }
 
 /**
- * 绑定属性批处理 这里是不是默认newobj只是一层的obj。基本key值是class,style,attr等
+ * 绑定属性批处理 这里是不是默认newobj只是一层的obj。基本key值是class,style,attr等;batch的意思是批处理
  * @param  {Object}  newObj
  * @param  {Object}  oldObj
  */
 vbind.batch = function (newObj, oldObj) {
 	each(newObj, function (value, key) {
-		this.single(key, value, oldObj && oldObj[key]);
+		this.single(key, value, oldObj && oldObj[key]);//这里也有不存在的情况,说明直接是新添加的属性。
 	}, this);
 }
 
 /**
  * 更新处理 className
  * @param  {Mix}  newClass
- * @param  {Mix}  oldClass
+ * @param  {Mix}  oldClass 存不存在请看this.single(key, value, oldObj && oldObj[key]);这一句
  */
 vbind.processClass = function (newClass, oldClass) {
 	let el = this.el;
